@@ -54,18 +54,25 @@ class FileUploader {
 
   #upload = (file) => {
     const data = new FormData();
-    data.append('file', file)
-    fetch(this.uploadUrl, {
-      method: 'POST',
-      body: data
-    })
-      .then(res => res.json())
-      .then((res) => {
-        console.log(`${file.name} upload succeeded`, res)
-      })
-      .catch(() => {
-        console.log(`${file.name} upload failed`)
-      })
+    data.append('file', file);
+    // fetch(this.uploadUrl, {
+    //   method: 'POST',
+    //   body: data
+    // })
+    //   .then(res => res.json())
+    //   .then((res) => {
+    //     console.log(`${file.name} upload succeeded`, res)
+    //   })
+    //   .catch(() => {
+    //     console.log(`${file.name} upload failed`)
+    //   });
+
+    const xhr = new XMLHttpRequest();
+    xhr.open('POST', this.uploadUrl);
+    xhr.upload.addEventListener('progress', (e) => {
+      console.log('progress', e);
+    });
+    xhr.send(data);
   }
 
 }
