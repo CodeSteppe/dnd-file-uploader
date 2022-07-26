@@ -44,33 +44,13 @@ body {
 
 .task {
   display: flex;
-  gap: 10px;
+  justify-content: space-between;
   align-items: center;
   font-size: 24px;
   background-color: #fafafa;
   color: #333;
   padding: 16px;
   position: relative;
-}
-
-.task-success {
-  justify-content: space-between;
-}
-
-.task [name="reload-outline"] {
-  color: #595959;
-  animation-name: spin;
-  animation-duration: 1s;
-  animation-timing-function: linear;
-  animation-iteration-count: infinite;
-}
-
-.task [name="checkmark-circle"] {
-  color: #95de64;
-}
-
-.task [name="close-circle"] {
-  color: #ff7875;
 }
 
 .upload-icon {
@@ -80,13 +60,4 @@ body {
 
 .tip {
   font-size: 40px;
-}
-
-@keyframes spin {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
 }

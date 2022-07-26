@@ -1,6 +1,4 @@
-const processingTemplate = document.querySelector('#template-task-processing');
-const successTemplate = document.querySelector('#template-task-success');
-const errorTemplate = document.querySelector('#template-task-error');
+const taskTemplate = document.querySelector('#template-task');
 
 new FileUploader({
   element: document.querySelector('.dnd-file-uploader'),
@@ -8,7 +6,7 @@ new FileUploader({
   renderTask: function (task) {
     switch (task.status) {
       case TASK_STATUS.PROCESSING: {
-        const taskDOM = processingTemplate.content.firstElementChild.cloneNode(true);
+        const taskDOM = taskTemplate.content.firstElementChild.cloneNode(true);
         const nameDOM = taskDOM.querySelector('.task-name');
         const progressDOM = taskDOM.querySelector('.task-progress');
         nameDOM.textContent = task.name;
