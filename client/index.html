@@ -12,9 +12,38 @@
 <body>
 
   <div class="dnd-file-uploader">
-    <ion-icon class="upload-icon" name="cloud-upload-outline"></ion-icon>
-    <p class="tip">Drag one or more files to this <i>drop zone</i>.</p>
+    <div class="drop-area">
+      <ion-icon class="upload-icon" name="cloud-upload-outline"></ion-icon>
+      <p class="tip">Drag&Drop files here</p>
+    </div>
+    <div class="task-list"></div>
   </div>
+
+  <template id="template-task-processing">
+    <div class="task task-processing">
+      <span class="task-name">some file name</span>
+      <span class="task-progress">50%</span>
+    </div>
+  </template>
+
+  <template id="template-task-success">
+    <div class="task task-success">
+      <div>
+        <ion-icon name="checkmark-circle"></ion-icon>
+        <span class="task-name">some file name</span>
+      </div>
+      <a class="task-uploaded-url" href="#" target="_blank">
+        URL
+      </a>
+    </div>
+  </template>
+
+  <template id="template-task-error">
+    <div class="task task-error">
+      <ion-icon name="close-circle"></ion-icon>
+      <span class="task-name">some file name</span>
+    </div>
+  </template>
 
   <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
   <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
