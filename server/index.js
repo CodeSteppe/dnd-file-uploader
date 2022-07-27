@@ -21,7 +21,7 @@ const upload = multer({ storage });
 app.use(cors())
 
 app.post('/upload', upload.single('file'), (req, res) => {
-  // console.log('req', req.file);
+  console.log('req', req.file);
   res.json({ url: `http://localhost:3000/uploads/${req.file.filename}` })
 });
 

@@ -15,5 +15,10 @@
   },
   "scripts": {
     "dev": "nodemon index.js"
+  },
+  "nodemonConfig": {
+    "ignore": [
+      "uploads/*"
+    ]
   }
 }
