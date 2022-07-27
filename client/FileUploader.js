@@ -65,29 +65,45 @@ class FileUploader {
     const data = new FormData();
     data.append('file', file);
     const task = {
+      id: this.tasks.length,
       name: file.name,
       status: TASK_STATUS.PROCESSING,
       progress: 0
     }
-    this.tasks.push(task);
+    this.tasks.unshift(task);
     const xhr = new XMLHttpRequest();
     xhr.open('POST', this.uploadUrl);
     xhr.upload.addEventListener('progress', (e) => {
       const { loaded, total } = e;
       const progress = Math.round(loaded / total * 100);
       task.progress = progress;
-      this.#renderTasks();
+      this.#updateTask(task);
+    });
+    xhr.addEventListener('load', (e) => {
+      task.status = TASK_STATUS.SUCCESS;
+      const response = JSON.parse(xhr.response);
+      console.log('response', response);
+      const { url } = response;
+      task.url = url;
+      this.#updateTask(task);
+    });
+    xhr.addEventListener('error', (e) => {
+      task.status = TASK_STATUS.ERROR;
+      this.#updateTask(task);
     });
     xhr.send(data);
   }
 
-  #renderTasks = () => {
-    const taskListDOM = this.element.querySelector('.task-list');
-    taskListDOM.innerHTML = '';
-    const sorted = this.tasks.sort((a, b) => a.status - b.status);
-    for (const task of sorted) {
-      console.log('render task', task);
-      taskListDOM.append(this.renderTask(task));
+  #updateTask = (task) => {
+    const taskList = this.element.querySelector('.task-list');
+    const id = `task-${task.id}`;
+    let taskBox = taskList.querySelector(`#${id}`);
+    if (!taskBox) {
+      taskBox = document.createElement('div');
+      taskBox.id = id;
+      taskList.prepend(taskBox);
     }
+    taskBox.innerHTML = '';
+    taskBox.append(this.renderTask(task));
   }
 }
