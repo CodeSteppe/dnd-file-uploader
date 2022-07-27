@@ -8,7 +8,7 @@ class FileUploader {
   constructor({
     element,
     uploadUrl,
-    renderTask
+    taskRenderer
   }) {
     if (element instanceof HTMLElement) {
       this.element = element;
@@ -16,7 +16,7 @@ class FileUploader {
       throw new Error('element should be an HTMLElement')
     }
     this.uploadUrl = uploadUrl;
-    this.renderTask = renderTask;
+    this.taskRenderer = taskRenderer;
     this.#init();
   }
 
@@ -104,6 +104,6 @@ class FileUploader {
       taskList.prepend(taskBox);
     }
     taskBox.innerHTML = '';
-    taskBox.append(this.renderTask(task));
+    taskBox.append(this.taskRenderer(task));
   }
 }

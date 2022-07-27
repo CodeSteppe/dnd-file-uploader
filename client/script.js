@@ -3,7 +3,7 @@ const taskTemplate = document.querySelector('#template-task');
 new FileUploader({
   element: document.querySelector('.dnd-file-uploader'),
   uploadUrl: 'http://localhost:3000/upload',
-  renderTask: function (task) {
+  taskRenderer: function (task) {
     const taskDOM = taskTemplate.content.firstElementChild.cloneNode(true);
     const nameDOM = taskDOM.querySelector('.task-name');
     nameDOM.textContent = task.name;
