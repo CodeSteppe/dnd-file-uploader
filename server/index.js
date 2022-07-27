@@ -12,7 +12,8 @@ const storage = multer.diskStorage({
     callback(null, uploadsPath);
   },
   filename: function (req, file, callback) {
-    callback(null, `${Date.now()}-${file.originalname}`);
+    const filename = req.headers['x-file-name'];
+    callback(null, `${Date.now()}-${decodeURIComponent(filename)}`);
     return;
   }
 })

@@ -73,6 +73,7 @@ class FileUploader {
     this.tasks.unshift(task);
     const xhr = new XMLHttpRequest();
     xhr.open('POST', this.uploadUrl);
+    xhr.setRequestHeader('x-file-name', encodeURIComponent(file.name));
     xhr.upload.addEventListener('progress', (e) => {
       const { loaded, total } = e;
       const progress = Math.round(loaded / total * 100);
