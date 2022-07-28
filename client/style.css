@@ -1,7 +1,3 @@
-:root {
-  --accent-color: #85a5ff;
-}
-
 * {
   margin: 0;
   padding: 0;
@@ -22,15 +18,24 @@ body {
 
 .drop-area {
   height: 50vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
   color: #8c8c8c;
   border: 6px dashed #bfbfbf;
   border-radius: 16px;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  align-items: center;
-  justify-content: center;
   user-select: none;
+}
+
+.upload-icon {
+  color: #40a9ff;
+  font-size: 100px;
+}
+
+.tip {
+  font-size: 40px;
 }
 
 .task-list {
@@ -50,13 +55,4 @@ body {
   color: #333;
   padding: 16px;
   position: relative;
-}
-
-.upload-icon {
-  color: #40a9ff;
-  font-size: 100px;
-}
-
-.tip {
-  font-size: 40px;
 }
